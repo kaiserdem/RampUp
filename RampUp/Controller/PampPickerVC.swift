@@ -31,9 +31,9 @@ class PampPickerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentationCo
       view.frame = CGRect(origin: CGPoint.zero, size: size) // скрин на экран
       sceneView = SCNView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
       view.insertSubview(sceneView, at: 0)
+      
       preferredContentSize = size
-
-      let scene = SCNScene(named: "art.scnassets/ramps.scn")! // 
+      let scene = SCNScene(named: "art.scnassets/ramps.scn")!
       sceneView.scene = scene
       
       let camera = SCNCamera()
@@ -63,7 +63,7 @@ class PampPickerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentationCo
       let node = hitResults[0].node
 
       rampPlacerVC.onRampSelected(node.name!)
-      
+      dismiss(animated: true, completion: nil)
     }
   }
 }
