@@ -13,6 +13,7 @@
 		AD36BB4F220C2A3D004364EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD36BB4D220C2A3D004364EF /* Main.storyboard */; };
 		AD36BB51220C2A3E004364EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD36BB50220C2A3E004364EF /* Assets.xcassets */; };
 		AD36BB54220C2A3E004364EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD36BB52220C2A3E004364EF /* LaunchScreen.storyboard */; };
+		AD36BB93220C6894004364EF /* PampPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD36BB92220C6894004364EF /* PampPickerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AD36BB50220C2A3E004364EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD36BB53220C2A3E004364EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD36BB55220C2A3E004364EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD36BB92220C6894004364EF /* PampPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PampPickerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				AD36BB4B220C2A3D004364EF /* RampPlacerVC.swift */,
+				AD36BB92220C6894004364EF /* PampPickerVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD36BB93220C6894004364EF /* PampPickerVC.swift in Sources */,
 				AD36BB4C220C2A3D004364EF /* RampPlacerVC.swift in Sources */,
 				AD36BB48220C2A3D004364EF /* AppDelegate.swift in Sources */,
 			);
