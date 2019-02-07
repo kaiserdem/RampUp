@@ -14,6 +14,7 @@ class PampPickerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentationCo
 
   var sceneView: SCNView!
   var size: CGSize!
+  weak var rampPlacerVC: RampPlacerVC!
   
   init(size: CGSize) {
     super.init(nibName: nil, bundle: nil)
@@ -27,35 +28,42 @@ class PampPickerVC: UIViewController, ARSCNViewDelegate, UIPopoverPresentationCo
     override func viewDidLoad() {
         super.viewDidLoad()
       
-      view.frame = CGRect(origin: CGPoint.zero, size: size)
+      view.frame = CGRect(origin: CGPoint.zero, size: size) // скрин на экран
       sceneView = SCNView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height))
       view.insertSubview(sceneView, at: 0)
       preferredContentSize = size
 
-      let scene = SCNScene(named: "art.scnassets/ramps.scn")!
+      let scene = SCNScene(named: "art.scnassets/ramps.scn")! // 
       sceneView.scene = scene
       
       let camera = SCNCamera()
       camera.usesOrthographicProjection = true
       scene.rootNode.camera = camera
+      // нажали на обьект
+      let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_ :)))
+      sceneView.addGestureRecognizer(tap)
       
-      var obj = SCNScene(named: "art.scnassets/pipe.dae")
-      var node = obj?.rootNode.childNode(withName: "pipe", recursively: true)!
-      node?.scale = SCNVector3Make(0.0018, 0.0018, 0.0018)
-      node?.position = SCNVector3Make(0, 0.9, -0.5)
-      scene.rootNode.addChildNode(node!)
+      let pipe = Ramp.getPipe()
+      Ramp.startRotation(node: pipe)
+      scene.rootNode.addChildNode(pipe)
       
-      obj = SCNScene(named: "art.scnassets/pyramid.dae")
-      node = obj?.rootNode.childNode(withName: "pyramid", recursively: true)!
-      node?.scale = SCNVector3Make(0.0052, 0.0052, 0.0052)
-      node?.position = SCNVector3Make(0, 0.1, -0.5)
-      scene.rootNode.addChildNode(node!)
-
-      obj = SCNScene(named: "art.scnassets/quarter.dae")
-      node = obj?.rootNode.childNode(withName: "quarter", recursively: true)!
-      node?.scale = SCNVector3Make(0.0032, 0.0032, 0.0032)
-      node?.position = SCNVector3Make(0, -0.8, -0.5)
-      scene.rootNode.addChildNode(node!)
+      let pyramid = Ramp.getPyramid()
+      Ramp.startRotation(node: pyramid)
+      scene.rootNode.addChildNode(pyramid)
+      
+      let quarter = Ramp.getQuarter()
+      Ramp.startRotation(node: quarter)
+      scene.rootNode.addChildNode(quarter)
   }
- 
+  @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
+    
+    let p = gestureRecognizer.location(in: sceneView)
+    let hitResults = sceneView.hitTest(p, options: [ : ])
+    if hitResults.count > 0 {
+      let node = hitResults[0].node
+
+      rampPlacerVC.onRampSelected(node.name!)
+      
+    }
+  }
 }
